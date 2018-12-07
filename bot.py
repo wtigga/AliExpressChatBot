@@ -60,6 +60,7 @@ def react_to_messages(message: Message):
                 break  # to prevent answering multiple times to several trigger word
             else:
                 bot.reply_to(message, 'Я не понял твой вопрос.')
+                break
         count = count + 1
 
 
