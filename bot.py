@@ -56,8 +56,9 @@ def react_to_messages(message: Message):
         for each in line:  # run through each word in list
             if each in reply:  # if the trigger word is in the list
                 bot.reply_to(message, random.choice(answers_all[count]))  # pick a random answer from the corresponding answer line
+                print(each)
                 break  # to prevent answering multiple times to several trigger word
-            break
+
         count = count + 1
 
 
