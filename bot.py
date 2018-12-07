@@ -58,9 +58,6 @@ def react_to_messages(message: Message):
                 bot.reply_to(message, random.choice(answers_all[count]))  # pick a random answer from the corresponding answer line
                 print(each)
                 break  # to prevent answering multiple times to several trigger word
-            else:
-                bot.reply_to(message, 'Я не понял твой вопрос.')
-                break
         count = count + 1
 
 
