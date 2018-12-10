@@ -18,11 +18,7 @@ def read_csv(filename):
 
 
 def clean_list(my_list):  # clean CSV list of empty cells
-    for _ in my_list:
-        try:
-            my_list.pop(my_list.index(''))
-        except:  # when we're run out of empty cells
-            pass  # don't do anything
+    my_list = list(filter(None, my_list))
     return tuple(my_list)
 
 
@@ -35,6 +31,7 @@ def clean_upper_list(my_list):
 
 
 triggers_all = tuple(clean_upper_list(read_csv('triggers.csv')))  # use tuples to speed up search and iterations
+print(triggers_all)
 answers_all = tuple(clean_upper_list(read_csv('answers.csv')))
 
 
