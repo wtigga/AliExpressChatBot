@@ -39,6 +39,17 @@ answers_all = tuple(clean_upper_list(read_csv('answers.csv')))
 def send_welcome(message: Message):
     bot.reply_to(message, 'Привет, я AliExpress бот. Я могу посоветовать тебе интересные новинки, подсказать где найти скидки, рассказать о купонах и всё такое прочее.')
 
+@bot.message_handler(commands=['pomogi'])
+def send_welcome(message: Message):
+    reply = message.text.lower()  # lowercase user's message to avoid case affect search
+    count = 0  # count the line where the trigger happens
+    for line in triggers_all:  # run through each list of trigger
+        for each in line:  # run through each word in list
+            if each in reply:  # if the trigger word is in the list
+                bot.reply_to(message, random.choice(answers_all[count]))  # pick a random answer from the corresponding answer line
+                print(each)
+                break  # to prevent answering multiple times to several trigger word
+        count = count + 1
 
 @bot.message_handler(content_types=['voice'])
 def handle_docs_audio(message):
