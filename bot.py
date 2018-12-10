@@ -43,15 +43,16 @@ def send_welcome(message: Message):
 def send_welcome(message: Message):
     reply = message.text.lower()  # lowercase user's message to avoid case affect search
     count = 0  # count the line where the trigger happens
+    answered = 0
     for line in triggers_all:  # run through each list of trigger
         for each in line:  # run through each word in list
             if each in reply:  # if the trigger word is in the list
                 bot.reply_to(message, random.choice(answers_all[count]))  # pick a random answer from the corresponding answer line
-                print(each)
+                answered += 1
                 break  # to prevent answering multiple times to several trigger word
-        else:
-            bot.reply_to(message, 'Ничего не понял. Попробуй перефразировать.')
         count = count + 1
+    if answered < 1:
+        bot.reply_to(message, 'Ничего не понял. Попробуй перефразировать.')
 
 
 @bot.message_handler(content_types=['voice'])
